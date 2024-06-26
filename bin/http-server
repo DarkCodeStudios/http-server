@@ -199,16 +199,23 @@ function listen(port) {
   server.listen(port, host, function () {
     var protocol = tls ? 'https://' : 'http://';
 
+
+    console.log(' ____             _     ___  ____ ');
+    console.log('|  _ \\  __ _ _ __| | __/ _ \\/ ___|');
+    console.log('| | | |/ _  |  __| |/ / | | \\___ \\');
+    console.log('| |_| | (_| | |  |   <| |_| |___) |');
+    console.log('|____/ \\__,_|_|  |_|\\_\\\\___/|____/');
+    console.log('')
     logger.info([
-      chalk.yellow('Starting up http-server, serving '),
+      chalk.white('The DarkOS server, directory server: '),
       chalk.cyan(server.root),
       tls ? (chalk.yellow(' through') + chalk.cyan(' https')) : ''
     ].join(''));
 
-    logger.info([chalk.yellow('\nhttp-server version: '), chalk.cyan(require('../package.json').version)].join(''));
+    logger.info([chalk.white('\nDarkOS server version: '), chalk.cyan(require('../package.json').version)].join(''));
 
     logger.info([
-      chalk.yellow('\nhttp-server settings: '),
+      chalk.yellow('\nDarkOS server settings: '),
       ([chalk.yellow('CORS: '), argv.cors ? chalk.cyan(argv.cors) : chalk.red('disabled')].join('')),
       ([chalk.yellow('Cache: '), argv.c ? (argv.c === '-1' ? chalk.red('disabled') : chalk.cyan(argv.c + ' seconds')) : chalk.cyan('3600 seconds')].join('')),
       ([chalk.yellow('Connection Timeout: '), argv.t === '0' ? chalk.red('disabled') : (argv.t ? chalk.cyan(argv.t + ' seconds') : chalk.cyan('120 seconds'))].join('')),
@@ -268,11 +275,11 @@ if (process.platform === 'win32') {
 }
 
 process.on('SIGINT', function () {
-  logger.info(chalk.red('http-server stopped.'));
+  logger.info(chalk.red('DarkOS server stopped.'));
   process.exit();
 });
 
 process.on('SIGTERM', function () {
-  logger.info(chalk.red('http-server stopped.'));
+  logger.info(chalk.red('DarkOS server stopped.'));
   process.exit();
 });
